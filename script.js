@@ -474,7 +474,7 @@ async function fetchLeads(scope, oneId) {
 let exporting = false;
 async function doExport(fmt, scope, oneId) {
   if (exporting) return; exporting = true;
-  const btns = $$('[data-exp],#bkExport'); btns.forEach(b => b.disabled = true); $('#exportMsg').textContent = 'Preparing export...';
+  const btns = $$('[data-exp],[data-bulk-exp],#bkExport'); btns.forEach(b => b.disabled = true); $('#exportMsg').textContent = 'Preparing export...';
   try {
     if (scope === 'selected' && !S.sel.size) return toast('No leads selected. Tick rows in All Leads first.', 'err');
     const leads = await fetchLeads(scope, oneId);
@@ -584,6 +584,7 @@ async function runImport() {
 }
 function bindImportExport() {
   $$('[data-exp]').forEach(b => b.onclick = () => doExport(b.dataset.exp, $('input[name=scope]:checked').value));
+  $$('[data-bulk-exp]').forEach(b => b.onclick = () => doExport(b.dataset.bulkExp, 'selected'));
   $('#bkExport').onclick = () => doExport('json', 'all');
   $('#importFile').onchange = e => handleImportFile(e.target.files[0], 'import');
   $('#restoreFile').onchange = e => handleImportFile(e.target.files[0], 'restore');
@@ -593,7 +594,6 @@ function bindImportExport() {
   $('#importCancel').onclick = () => { if (!IMP.running) resetImport(); };
   $('#dupSkip').onclick = () => { IMP.items.forEach(i => { if (i.dup && !i.done) i.action = 'skip'; }); renderImport(); };
   $('#dupAll').onclick = () => { IMP.items.forEach(i => { if (i.dup && !i.done && !i.errors.length) i.action = 'import'; }); renderImport(); };
-  $('#bulkExport').onclick = () => { show('export'); $('input[name=scope][value=selected]').checked = true; };
   $('#bulkClear').onclick = () => { S.sel.clear(); $$('.rowsel').forEach(c => c.checked = false); updateSel(); };
 }
 

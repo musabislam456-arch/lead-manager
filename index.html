@@ -58,7 +58,7 @@
       <section id="v-leads" hidden>
         <div class="row between"><h2>All Leads</h2><button class="btn primary" data-go="form">+ Add Lead</button></div>
         <div class="card">
-          <div id="bulk" class="row" hidden><strong id="bulkInfo"></strong><button class="btn sm" id="bulkExport">Export selected</button><button class="btn sm" id="bulkClear">Clear selection</button></div>
+          <div id="bulk" class="row" hidden><strong id="bulkInfo"></strong><span class="muted">Export all selected in one file:</span><button class="btn sm" data-bulk-exp="json">JSON</button><button class="btn sm" data-bulk-exp="pdf">PDF</button><button class="btn sm" data-bulk-exp="docx">Word</button><button class="btn sm" data-bulk-exp="xlsx">Excel</button><button class="btn sm" id="bulkClear">Clear selection</button></div>
           <div class="filters">
             <input type="search" id="q" placeholder="Search name, city, phone, email, notes...">
             <select id="fCountry" data-f="country"></select>
