@@ -1,0 +1,12 @@
+{
+  "name": "lead-manager-tests",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node logic.test.mjs" },
+  "devDependencies": {
+    "docx": "8.5.0",
+    "jspdf": "2.5.1",
+    "jspdf-autotable": "3.8.2",
+    "xlsx": "0.18.5"
+  }
+}
